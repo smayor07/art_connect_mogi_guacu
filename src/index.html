@@ -26,8 +26,21 @@
 <header>
   ArtConnect Mogi Guaçu
   <button class="logout-btn" id="logoutBtn">Sair</button>
+  <!-- Botão para abrir sidebar no mobile/tablet -->
+  <button id="openSidebar" class="sidebar-toggle" aria-label="Abrir menu">&#9776;</button>
 </header>
-<nav>
+
+<!-- Sidebar lateral (mobile/tablet) -->
+<nav id="sidebar" class="sidebar">
+  <button id="closeSidebar" class="sidebar-close" aria-label="Fechar menu">&times;</button>
+  <button id="nav-dashboard-sidebar">Divulgação de Eventos</button>
+  <button id="nav-cadastro-sidebar">Cadastro de Artista</button>
+  <button id="nav-cadastro-evento-sidebar">Cadastro de Evento</button>
+  <button id="nav-listagem-sidebar">Listagem de Artistas</button>
+  <button id="nav-admin-sidebar">Área Administrativa</button>
+</nav>
+<!-- Menu horizontal (padrão) -->
+<nav id="topnav">
   <button id="nav-dashboard" class="active">Divulgação de Eventos</button>
   <button id="nav-cadastro">Cadastro de Artista</button>
   <button id="nav-cadastro-evento">Cadastro de Evento</button>

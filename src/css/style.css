@@ -180,3 +180,55 @@ input[type="submit"], .btn {
     #editModal > div{padding:.7em;}
     #editModal h3{font-size:.99em}
 }
+
+/* Sidebar e menu responsivo */
+.sidebar, .sidebar-toggle { display: none; }
+#topnav { display: flex; }
+
+.sidebar {
+  position: fixed;
+  left: 0; top: 0; bottom: 0;
+  width: 220px;
+  background: #285a8c;
+  box-shadow: 2px 0 12px #0002;
+  padding: 1.5em .7em;
+  flex-direction: column;
+  gap: .7em;
+  z-index: 1000;
+  transform: translateX(-100%);
+  transition: transform .25s;
+}
+.sidebar.open { transform: translateX(0); }
+.sidebar button {
+  background: none; border: none; color: #fff;
+  font-size: 1em; text-align: left; padding: .7em; border-radius: 6px;
+}
+.sidebar button.active, .sidebar button:hover {
+  background: #F5A623; color: #285a8c;
+}
+.sidebar-close {
+  background: none; border: none; color: #fff;
+  font-size: 2em; align-self: flex-end; margin-bottom: .5em;
+}
+.sidebar-toggle {
+  position: absolute;
+  left: 0.7em;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 1100;
+  background: #285a8c;
+  color: #fff;
+  border: none;
+  font-size: 2em;
+  border-radius: .3em;
+  padding: .1em .4em;
+}
+header {
+  position: relative; /* Garante que o botão use o header como referência */
+}
+
+/* Esconde topnav e mostra sidebar no mobile/tablet */
+@media (max-width:900px) {
+  #topnav { display:none; }
+  .sidebar, .sidebar-toggle { display:flex; }
+}

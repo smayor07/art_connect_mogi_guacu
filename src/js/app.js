@@ -270,5 +270,38 @@ window.removeEvent = function(i) {
   renderEventos();
 };
 
+// --- Sidebar/Responsivo ---
+const sidebar = document.getElementById('sidebar');
+const openSidebar = document.getElementById('openSidebar');
+const closeSidebar = document.getElementById('closeSidebar');
+
+// Abre sidebar
+openSidebar.onclick = () => sidebar.classList.add('open');
+// Fecha sidebar
+closeSidebar.onclick = () => sidebar.classList.remove('open');
+// Fecha ao clicar fora
+window.addEventListener('click', function(e){
+    if(sidebar.classList.contains('open') && !sidebar.contains(e.target) && e.target !== openSidebar){
+        sidebar.classList.remove('open');
+    }
+});
+
+// Sincroniza navegação dos botões do sidebar com os do topnav
+const navMap = [
+    { main: 'nav-dashboard', side: 'nav-dashboard-sidebar', sec: 'dashboard', cb: () => { showSection('dashboard'); renderEventos(); } },
+    { main: 'nav-cadastro', side: 'nav-cadastro-sidebar', sec: 'cadastro', cb: () => showSection('cadastro') },
+    { main: 'nav-cadastro-evento', side: 'nav-cadastro-evento-sidebar', sec: 'cadastroEvento', cb: () => showSection('cadastroEvento') },
+    { main: 'nav-listagem', side: 'nav-listagem-sidebar', sec: 'listagem', cb: () => { showSection('listagem'); renderArtists(); } },
+    { main: 'nav-admin', side: 'nav-admin-sidebar', sec: 'admin', cb: () => { showSection('admin'); renderAdmin(); } }
+];
+
+navMap.forEach(({main, side, cb}) => {
+    const btnSide = document.getElementById(side);
+    if(btnSide) btnSide.onclick = function() {
+        cb();
+        sidebar.classList.remove('open');
+    };
+});
+
 showSection('dashboard');
 renderEventos();
