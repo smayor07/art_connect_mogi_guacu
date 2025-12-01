@@ -82,7 +82,7 @@ header {
   box-shadow: var(--shadow);
 }
 .logout-btn {
-  position: absolute; right: 1.5rem; top: 1.2rem;
+  position: absolute; right: 0.9rem; top: 0.7rem;
   background: var(--bg); color: var(--accent);
   border:none; padding:.5rem 1.2rem; border-radius:6px; cursor:pointer; font-size:.95em; transition:.2s background,.2s color;
 }
@@ -231,4 +231,43 @@ header {
 @media (max-width:900px) {
   #topnav { display:none; }
   .sidebar, .sidebar-toggle { display:flex; }
+}
+
+#detailModal {
+  display: none;
+  position: fixed;
+  top: 0; left: 0;
+  width: 100vw; height: 100vh;
+  background: #000a;
+  z-index: 9999;
+  align-items: center;
+  justify-content: center;
+  animation: fadexin .25s linear;
+}
+#detailModal .modal-content {
+  background: #fff;
+  color: #222;
+  padding: 2em;
+  border-radius: .7em;
+  min-width: min(90vw,350px);
+  max-width: min(95vw,400px);
+  box-shadow: #0006 0px 4px 24px;
+  margin: auto;
+  font-weight: bold;
+  font-size: .98em;
+}
+#detailModal h3 {
+  color: #357ABD;
+  margin-top: -1em;
+  font-size: 1.25em;
+}
+#detailModal img {
+  max-width: 180px;
+  display: block;
+  margin: auto auto 1em auto;
+  border-radius: 8px;
+}
+@media (max-width:500px){
+  #detailModal .modal-content{padding:.7em;}
+  #detailModal h3{font-size:.99em}
 }

@@ -97,18 +97,19 @@ function renderArtists() {
    artistList.innerHTML = '<em>Nenhum artista cadastrado.</em>';
    return;
  }
- artistList.innerHTML =
-   '<h3>Artistas Cadastrados</h3>' +
-   filtrados.map((a,i) => `
-     <div class="artist">
-       ${a.foto ? `<img src="${a.foto}" alt="Foto de ${a.nome}" class='artist-photo'>` : ''}
-       <div style='flex-grow:1'>
-       <strong>${a.nome}</strong> (${a.tipo})<br>${a.descricao}<br>
-       ${a.portfolio ? `<a href="${a.portfolio}" target="_blank" style="color:#F5A623;">Portfólio</a><br>` : ''}
-       Status: ${a.status}
-       </div>
-       <button class='btn btn-small' onclick='editArtist(${i})'>Editar</button>
-     </div>`).join('');
+ artistList.innerHTML = '<h3>Artistas Cadastrados</h3>' + filtrados.map((a,i) => `
+  <div class="artist">
+    ${a.foto ? `<img src="${a.foto}" alt="Foto de ${a.nome}" class='artist-photo'>` : ''}
+    <div style='flex-grow:1'>
+      <strong>${a.nome}</strong> (${a.tipo})<br>
+      ${a.descricao}<br>
+      ${a.portfolio ? `<a href="${a.portfolio}" target="_blank" style="color:#F5A623;">Portfólio</a><br>` : ''}
+      Status: ${a.status}
+    </div>
+    <button class='btn btn-small' onclick='showArtistDetail(${artists.indexOf(a)})'>Ver Detalhes</button>
+    <button class='btn btn-small' onclick='editArtist(${artists.indexOf(a)})'>Editar</button>
+  </div>
+`).join('');
 }
 if (filtroTipo) filtroTipo.onchange = renderArtists;
 
@@ -302,6 +303,23 @@ navMap.forEach(({main, side, cb}) => {
         sidebar.classList.remove('open');
     };
 });
+
+window.showArtistDetail = function(i) {
+  const a = artists[i];
+  if (!a) return;
+  document.getElementById('detailModalTitle').textContent = a.nome;
+  document.getElementById('detailModalBody').innerHTML = `
+    ${a.foto ? `<img src="${a.foto}" alt="Foto de ${a.nome}">` : ''}
+    <p><b>Tipo:</b> ${a.tipo}</p>
+    <p><b>Descrição:</b> ${a.descricao}</p>
+    ${a.portfolio ? `<p><b>Portfólio:</b> <a href="${a.portfolio}" target="_blank">${a.portfolio}</a></p>` : ''}
+    <p><b>Status:</b> ${a.status}</p>
+  `;
+  document.getElementById('detailModal').style.display = 'flex';
+};
+window.closeDetailModal = function() {
+  document.getElementById('detailModal').style.display = 'none';
+};
 
 showSection('dashboard');
 renderEventos();
